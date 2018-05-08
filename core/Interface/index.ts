@@ -1,0 +1,1 @@
+export { IPosition } from '@BEAST/Interface/Position';

@@ -1,0 +1,29 @@
+{
+    "compileOnSave": false,
+    "exclude": [
+        "webpack.config.js",
+        "rollup.config.js",
+        "node_modules"
+    ],
+    "compilerOptions": {
+        "outDir": "./dist/",
+        "target": "es5",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "noImplicitAny": false,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "sourceMap": true,
+        "allowJs": false,
+        "lib": [
+            "es2017",
+            "dom"
+        ],
+        "baseUrl": ".",
+        "paths": {
+            "@BEAST/*": [
+                "core/*"
+            ]
+        }
+    }
+}

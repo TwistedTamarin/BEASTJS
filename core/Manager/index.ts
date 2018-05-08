@@ -1,0 +1,1 @@
+export { AnimationManager } from '@BEAST/Manager/Animation';
