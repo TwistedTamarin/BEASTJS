@@ -30,7 +30,6 @@ export class Trigger
     public update(event?: string, data?: any)
     {
         let previous = this.state;
-
         if (event === "load")
             this.state = this.states.in;
 

@@ -1,33 +1,27 @@
-import { Trigger } from '@BEAST/Component/Trigger';
-import { IPosition } from '@BEAST/Interface';
+import { Scroll } from '@BEAST/Component/Scroll';
 
-export class ScrollFixed extends Trigger
+export class ScrollFixed extends Scroll
 {
     public initialState: string;
-    public position: number;
+    public fixPosition: number;
+
     constructor(element: Element, data: any)
     {
         super(element, data);
-        this.position = Number(this.data[3]);
+        this.fixPosition = Number(this.data[3]);
         this.initialState = this.state;
     }
 
-    public update(event?: string, data?: any)
-    {
-        if (event === "scroll")
-            this.updateScroll(data.x, data.y);
-    }
-
-    private updateScroll(x: number, y: number)
+    public updateScroll(x: number, y: number)
     {
         let previous = this.state;
         y = (!y) ? window.pageYOffset : y;
         x = (!x) ? window.pageXOffset : x;
 
-        if (y >= this.position)
+        if (y >= this.fixPosition)
             this.state = this.states.in;
 
-        if (y <= this.position && this.initialState !== this.state)
+        if (y <= this.fixPosition && this.initialState !== this.state)
             this.state = this.states.out;
 
         if (previous !== this.state)

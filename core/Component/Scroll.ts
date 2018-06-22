@@ -19,7 +19,7 @@ export class Scroll extends Trigger
             this.updateScroll(data.x, data.y);
     }
 
-    private updateScroll(x: number, y: number)
+    public updateScroll(x: number, y: number)
     {
         let previous = this.state;
         y = (!y) ? window.pageYOffset : y;
