@@ -1,5 +1,6 @@
 import { Trigger } from '@BEAST/Component/Trigger';
-import { IPosition } from '@BEAST/Interface';
+import { IPosition, Config } from '@BEAST/Interface';
+import { Debug } from '@BEAST/Component/Debug';
 
 export class Scroll extends Trigger
 {
@@ -8,27 +9,37 @@ export class Scroll extends Trigger
     {
         super(element, data);
         this.position = <IPosition>{};
+        this.parse();
+        if(Config.debug)
+            new Debug(this.element, "trigger");
+    }
 
+    parse()
+    {
         this.position.top = this.element.offsetTop + this.offsets.top;
-        this.position.bottom = this.element.offsetTop + this.element.offsetHeight + this.offsets.bottom;
+        this.position.bottom = (this.element.offsetTop + this.element.offsetHeight) - this.offsets.bottom;
     }
 
     public update(event?: string, data?: any)
     {
         if (event === "scroll")
             this.updateScroll(data.x, data.y);
+        
+        if(event === "resize")
+            this.parse();
     }
 
     public updateScroll(x: number, y: number)
     {
-        let previous = this.state;
         y = (!y) ? window.pageYOffset : y;
         x = (!x) ? window.pageXOffset : x;
 
-        if (y >= this.position.top)
-            this.state = this.states.in;
+        let previous = this.state;
+        let viewport = {top: y + parseInt(Config.viewport.top),bottom: y + (window.innerHeight - parseInt(Config.viewport.bottom))};
 
-        if (y >= this.position.bottom)
+        if((viewport.bottom > this.position.top || viewport.top < this.position.bottom) && !(viewport.bottom < this.position.top) && !(viewport.top > this.position.bottom))
+            this.state = this.states.in;
+        else 
             this.state = this.states.out;
 
         if (previous !== this.state)

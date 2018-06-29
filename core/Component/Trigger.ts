@@ -1,4 +1,4 @@
-import { IPosition } from '@BEAST/Interface';
+import { IPosition, Config } from '@BEAST/Interface';
 
 export class Trigger
 {
@@ -21,7 +21,7 @@ export class Trigger
         this.states = {};
         this.states.in = (this.data[1]) ? this.data[1] : '';
         this.states.out = (this.data[2]) ? this.data[2] : '';
-
+        
         this.offsets = <IPosition>{};
         this.offsets.top = (this.data[3]) ? Number(this.data[3]) : 0;
         this.offsets.bottom = (this.data[4]) ? Number(this.data[4]) : 0;

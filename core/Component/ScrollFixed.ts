@@ -20,8 +20,7 @@ export class ScrollFixed extends Scroll
 
         if (y >= this.fixPosition)
             this.state = this.states.in;
-
-        if (y <= this.fixPosition && this.initialState !== this.state)
+        else if (y <= this.fixPosition && this.initialState !== this.state)
             this.state = this.states.out;
 
         if (previous !== this.state)
