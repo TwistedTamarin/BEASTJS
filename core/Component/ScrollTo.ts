@@ -12,6 +12,6 @@ export class ScrollTo extends Trigger
     public update(event?: string, data?: any)
     {
         if (event === "click")
-            window.scrollTo(this.target.scrollTop);
+            window.scrollTo({top: this.target.scrollTop,behavior: 'smooth'});
     }
 }

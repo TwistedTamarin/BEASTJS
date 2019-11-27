@@ -1,9 +1,7 @@
 export var Config = {
-    debug: <boolean>false,
-    viewport: {
-        top: <any>0,
-        bottom: <any>0,
-        left: <any>0,
-        right: <any>0
+    intersect: {
+        root: null, 
+        rootMargin: "-25% -5% -25% -5%",
+        threshold: [0, 0.2, 1]
     }
 };
